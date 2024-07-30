@@ -57,9 +57,6 @@ const props = defineProps<{
 
 const branches = ref(props.branches);
 
-onMounted(() => {
-    // console.log(branches.value); 
-});
 
 // Use reactive to define the form object and its properties
 // use type assertion to define the type of the form object

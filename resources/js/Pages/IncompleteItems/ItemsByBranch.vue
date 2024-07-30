@@ -1,15 +1,28 @@
 <template>
     <AVLayout>
         <div v-if="incompleteItems">
-            <h1 class="text-gray-700 text-bold text-3xl leading mb-2">Incomplete Items</h1>
+            <h1 class="text-gray-700 text-bold text-3xl leading-10 mb-2">Incomplete Items</h1>
             <!-- Search form -->
-            <form @submit.prevent="submit" class="flex items">
+            <form @submit.prevent="submit" class="flex justify-between">
+                <div class="my-5">
+                    <label for="pageSize" class="font-bold px-1">Items per page:</label>
+                    <select
+                        id="pageSize"
+                        v-model="form.pageSize"
+                        class="w-16  p-1 border border-gray-200 rounded-md shadow-sm focus:ring-indigo-300 focus:border-indigo-300 sm:text-sm"
+                    >
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
                 <input
                     type="text"
                     v-model="searchQuery"
                     placeholder="Search by title..."
-                    class="w-64 my-2 p-1 border border-gray-200 rounded-md shadow-sm focus:ring-indigo-300 focus:border-indigo-300 sm:text-sm"
+                    class="w-64 my-5 p-1 border border-gray-200 rounded-md shadow-sm focus:ring-indigo-300 focus:border-indigo-300 sm:text-sm"
                 />
+                
             </form>
 
             <!-- Table with pagination -->
@@ -172,7 +185,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, defineProps } from 'vue';
+import { ref, computed, defineProps, reactive } from 'vue';
 import AVLayout from '@/Layouts/AVLayout.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import Modal from '@/Components/Modal.vue';
@@ -205,6 +218,9 @@ const sortAscending = ref<boolean>(true);
 const currentPage = ref<number>(1);
 const pageSize = 10;
 
+const form = reactive({
+    pageSize: 10,
+});
 // Filter and sort items based on search query and sort order
 const filteredSortedItems = computed(() => {
     let items = [...props.incompleteItems];
@@ -227,14 +243,14 @@ const filteredSortedItems = computed(() => {
 
 // Paginate the sorted items
 const paginatedItems = computed(() => {
-    const start = (currentPage.value - 1) * pageSize;
-    const end = start + pageSize;
+    const start = (currentPage.value - 1) * form.pageSize;
+    const end = start + form.pageSize;
     return filteredSortedItems.value.slice(start, end);
 });
 
 // Calculate total pages
 const totalPages = computed(() => {
-    return Math.ceil(filteredSortedItems.value.length / pageSize);
+    return Math.ceil(filteredSortedItems.value.length / form.pageSize);
 });
 
 // Change the current page
