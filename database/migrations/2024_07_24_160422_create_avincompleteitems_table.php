@@ -13,28 +13,28 @@ return new class extends Migration
     {
         Schema::create('avincompleteitems', function (Blueprint $table) {
             $table->id();
-            $table->string('itemId');
+            $table->string('itemId')->nullable();
             $table->string('title', 800)->nullable();
-            $table->dateTime('createDate')->nullable();
+            $table->date('createDate')->nullable()->date_format('Y-m-d');
             $table->string('userKey')->nullable();
             $table->string('userId')->nullable();
             $table->string('userPhone')->nullable();
             $table->string('userName')->nullable();
             $table->string('userEmail')->nullable();
             $table->boolean('processed')->default(false);
-            $table->dateTime('processDate')->nullable();
-            $table->string('contact')->nullable();
-            $table->dateTime('contactDate')->nullable();
+            $table->date('processDate')->nullable()->date_format('Y-m-d');
+            $table->boolean('contact')->default(false);
+            $table->date('contactDate')->nullable()->date_format('Y-m-d');
             $table->boolean('complete')->default(false);
-            $table->dateTime('completeDate')->nullable();
+            $table->date('completeDate')->nullable()->date_format('Y-m-d');
             $table->boolean('discard')->default(false);
-            $table->dateTime('discardDate')->nullable();
-            $table->integer('location');
+            $table->date('discardDate')->nullable()->date_format('Y-m-d');
+            $table->integer('location')->nullable();
             $table->string('transitLocation')->nullable();
-            $table->dateTime('transitDate')->nullable();
+            $table->date('transitDate')->nullable()->date_format('Y-m-d');
             $table->text('comments')->nullable();
             $table->boolean('notified')->default(false);
-            $table->dateTime('noticeDate')->nullable();
+            $table->date('noticeDate')->nullable()->date_format('Y-m-d');
             $table->timestamps();
         });
     }

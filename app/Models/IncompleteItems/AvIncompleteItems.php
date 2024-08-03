@@ -17,6 +17,15 @@ class AvIncompleteItems extends Model
     'completeDate', 'discard', 'discardDate', 'location', 'transitLocation', 
     'transitDate', 'comments', 'notified', 'noticeDate'];
 
+    protected $casts = [
+        'createDate' => 'date:Y-m-d',
+        'processDate' => 'date:Y-m-d',
+        'contactDate' => 'date:Y-m-d',
+        'completeDate' => 'date:Y-m-d',
+        'discardDate' => 'date:Y-m-d',
+        'transitDate' => 'date:Y-m-d',
+        'noticeDate' => 'date:Y-m-d',
+    ];
     public function branch()
     {
         return $this->belongsTo(Branches::class, 'location');

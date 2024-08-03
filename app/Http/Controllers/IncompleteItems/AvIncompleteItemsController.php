@@ -74,6 +74,20 @@ class AvIncompleteItemsController extends Controller
                     'userName' => $incompleteItem->userName,
                     'userEmail' => $incompleteItem->userEmail,
                     'userPhone' => $incompleteItem->userPhone,
+                    'processed' => $incompleteItem->processed,
+                    'processDate' => $incompleteItem->processDate,
+                    'contact' => $incompleteItem->contact,
+                    'contactDate' => $incompleteItem->contactDate,
+                    'complete' => $incompleteItem->complete,
+                    'completeDate' => $incompleteItem->completeDate,
+                    'discard' => $incompleteItem->discard,
+                    'discardDate' => $incompleteItem->discardDate,
+                    'transitLocation' => $incompleteItem->transitLocation,
+                    'transitDate' => $incompleteItem->transitDate,
+                    'comments' => $incompleteItem->comments,
+                    'notified' => $incompleteItem->notified,
+                    'noticeDate' => $incompleteItem->noticeDate,
+
                 ];
             }),
         ]);
@@ -110,4 +124,17 @@ class AvIncompleteItemsController extends Controller
         return redirect()->route('incompleteItems.index');
     }
  
+    // update the incomplete item
+    public function update(Request $request)
+    {
+        $incompleteItem = AvIncompleteItems::find($request->id); 
+        $incompleteItem->update([
+            'complete' => $request->complete,
+            'completeDate' => $request->completeDate,
+            'contact' => $request->contact,
+            'contactDate' => $request->contactDate,
+            'discard' => $request->discard,
+            'discardDate' => $request->discardDate,
+        ]);    
+    }
 }
