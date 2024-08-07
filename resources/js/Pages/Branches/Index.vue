@@ -3,10 +3,9 @@
     <AVLayout>
         <div class="container mx-auto">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Incomplete Items</h2>
-        
             <div class="flex flex-col mt-4">
                 <form @submit.prevent="submit" class="flex items-center flex-col w-full">
-                    <label for="branches" class="w-full my-2 font-bold">Select your branch:</label>
+                    <label for="selectedBranch" class="w-full my-2 font-bold">Select your branch:</label>
                     <select id="selectedBranch" v-model="form.selectedBranch" class="w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         <option 
                             v-for="branch in branches" 

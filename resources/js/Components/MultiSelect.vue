@@ -8,7 +8,9 @@
         placeholder="Select tags"
         class="border p-2 rounded w-full"
       />
-      <ul v-if="dropdownVisible" class="absolute border bg-white w-full mt-1 rounded shadow-lg z-10">
+      <!-- Dropdown list of options -->
+
+      <ul v-if="dropdownVisible" class="absolute border bg-white w-full mt-1 rounded shadow-lg z-10 overflow-y-auto">
         <li
           v-for="option in filteredOptions"
           :key="option"

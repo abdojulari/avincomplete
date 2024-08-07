@@ -3,7 +3,7 @@
         <div v-if="incompleteItems">
             <h1 class="text-gray-700 text-bold text-3xl leading-10 mb-2">Incomplete Items</h1>
             <!-- Search form -->
-            <form @submit.prevent="submit" class="flex flex-col md:flex-row justify-between">
+            <form for="search and filter" @submit.prevent="submit" class="flex flex-col md:flex-row justify-between">
                 <div class="flex my-2 px-2 md:my-5">
                     <div class="">
                         <label for="pageSize" class="font-bold px-1">Items per page:</label>
@@ -17,11 +17,10 @@
                             <option value="50">50</option>
                         </select>
                     </div>
-                   
                     <div class="md:mx-4">
-                        <label for="Filter by" class="font-bold px-1">Filter by:</label>
+                        <label for="filterBy" class="font-bold px-1">Filter by:</label>
                         <select
-                            id="sort"
+                            id="filterBy"
                             v-model="form.filter"
                             class="w-full md:w-32 p-1 border border-gray-200 rounded-md shadow-sm focus:ring-indigo-300 focus:border-indigo-300 sm:text-sm"
                         >
@@ -33,14 +32,13 @@
                     </div>
                 </div>
                 <input
+                    name="search"
                     type="text"
                     v-model="searchQuery"
                     placeholder="Search by title..."
                     class="w-full md:w-64 md:h-8 my-2 md:my-5 p-1 border border-gray-200 rounded-md shadow-sm focus:ring-indigo-300 focus:border-indigo-300 sm:text-sm"
                 />
             </form>
-
-
             <!-- Table with pagination -->
             <div class="overflow-x-auto text-sm bg-white/75 backdrop-blur-sm">
                 <table class="min-w-full bg-white/75 backdrop-blur-sm border-gray-200 shadow-md overflow-hidden">
@@ -67,7 +65,10 @@
                             <td class="p-1 w-20">
                                 <button
                                     @click="actionButton('info', item)"
-                                    class="border border-sky-500/50 text-sky-500/50 hover:bg-sky-500/50 hover:text-white text-xs rounded-md p-1 w-20 font-medium"
+                                    class="
+                                        border border-sky-900/50 text-sky-900/50 
+                                        hover:bg-sky-500/50 hover:text-white hover:border-sky-500/50 
+                                        text-xs rounded-md p-1 w-20 font-bold"
                                 >
                                     Info
                                 </button>
@@ -75,7 +76,9 @@
                             <td class="p-1 w-20">
                                 <button
                                     @click="actionButton('contact', item)"
-                                    class="border border-orange-300 text-orange-300 hover:bg-orange-300 hover:text-white text-xs rounded-md p-1 w-20 font-medium"
+                                    class="border border-orange-900 text-orange-900 
+                                    hover:bg-orange-300 hover:text-white hover:border-orange-300
+                                    text-xs rounded-md p-1 w-20 font-bold"
                                 >
                                     Contacted
                                 </button>
@@ -83,7 +86,9 @@
                             <td class="p-1 w-20">
                                 <button
                                     @click="actionButton('complete', item)"
-                                    class="border border-teal-300 text-teal-300 hover:bg-teal-300 hover:text-white text-xs rounded-md p-1 w-20 font-medium"
+                                    class="border border-teal-900 text-teal-900 
+                                    hover:bg-teal-300 hover:text-white hover:border-teal-300
+                                    text-xs rounded-md p-1 w-20 font-bold"
                                 >
                                     Complete
                             </button>
@@ -91,7 +96,9 @@
                             <td class="p-1 w-20">
                                 <button
                                     @click="actionButton('discard', item)"
-                                    class="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white text-xs rounded-md p-1 w-20 font-medium"
+                                    class="border border-red-900 text-red-900 
+                                    hover:bg-red-500 hover:text-white hover:border-red-500
+                                    text-xs rounded-md p-1 w-20 font-bold"
                                 >
                                     Discard
                             </button>
